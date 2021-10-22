@@ -74,9 +74,7 @@ public class Mysocket extends AsyncTask<ArrayList<String>, Integer, Void>     //
                 Socket s = new Socket("140.124.39.44",8080);
                 System.out.println("連線成功！嘗試傳送檔案....");
                 System.out.println("傳送圖片...");
-                //获取图片字节流
-                //fis = new FileInputStream("/sdcard/DCIM/Camera/P_20180910_214307.jpg");
-                ///
+                //獲取圖片字節流
                 File file = new File(message);              // message 為 輸入路徑  類似這種("/sdcard/DCIM/Camera/P_20180910_214307.jpg");
                 ///
                 fis = new FileInputStream(file);
