@@ -21,7 +21,7 @@ public class socket_label extends AsyncTask<String, Void, Void>
 
             out.write((message + "#").getBytes());
 
-            //通知服务端，数据发送完毕
+            //通知服務端，數據發送完畢
             s.shutdownOutput();
             //關閉
             out.close();
