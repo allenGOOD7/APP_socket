@@ -40,22 +40,7 @@ public class Mysocket extends AsyncTask<ArrayList<String>, Integer, Void>     //
 
     }
 
-    /*public void dialog(String title, String message)
-    {
-        new AlertDialog.Builder(context)
-                .setIcon(R.drawable.ic_launcher)
-                .setTitle(title)
-                .setMessage(message)
-                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                })//.setNegativeButton("cancel",null)
-                .create()
-                .show();
-
-    }*/
+    
 
     @Override
     protected void onPreExecute()
