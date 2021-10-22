@@ -80,25 +80,6 @@ public class Mysocket extends AsyncTask<ArrayList<String>, Integer, Void>     //
         byte[] sendBytes;
         FileInputStream fis = null;
 
-        /*System.setProperty("javax.net.ssl.keyStore", "D:\\java\\bin\\kclient.jks");
-        System.setProperty("javax.net.ssl.keyStorePassword", "123456");
-        System.setProperty("javax.net.ssl.trustStore", "D:\\java\\bin\\tclient.jks");
-        System.setProperty("javax.net.ssl.trustStorePassword","123456");*/
-
-        /*System.setProperty("javax.net.ssl.keyStore", "D:\\java\\bin\\client_ks.jks");
-        System.setProperty("javax.net.ssl.keyStorePassword", "client");
-        System.setProperty("javax.net.ssl.trustStore", "D:\\java\\bin\\serverTrust_ks.jks");
-        System.setProperty("javax.net.ssl.trustStorePassword", "client");
-
-        String trustStore = System.getProperty("javax.net.ssl.keyStore");
-        if (trustStore == null)
-        {
-            System.out.println("javax.net.ssl.trustStore is not defined");
-        }
-        else {
-            System.out.println("javax.net.ssl.trustStore =" + trustStore);
-        }*/
-
         for (int i = 0; i < totallist.size(); i++)
         {
             message = totallist.get(i);
