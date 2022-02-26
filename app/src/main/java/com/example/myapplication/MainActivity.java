@@ -40,7 +40,6 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {               
-    public static Dialog progressDialog;
 
     TextView tt;
     static TextView rr;
@@ -48,13 +47,10 @@ public class MainActivity extends AppCompatActivity {
     Button button1;
     private static final int PICK_IMAGE = 100;
     Uri imageUri;
-    Socket s;
-    DataOutputStream dos;
-    String imagepath = null;
+    String imagePath = null;
     static int a = 100;
     static String white_path;
     static String target_path;
-    String filenameTOMY;
     View view;
     RadioGroup rg;
     static String target_label = "unselected";
@@ -73,8 +69,8 @@ public class MainActivity extends AppCompatActivity {
 
         button1 = (Button)findViewById(R.id.button);
         dialog("系統提示", "使用前\n\n請將白校正照片放入->'Download'-> 'white'資料夾 \n\n請將待測品照片放入->'Download'-> 'target'資料夾");
-        white_path = creatfile("white");
-        target_path = creatfile("target");
+        white_path = creatFile("white");
+        target_path = creatFile("target");
 
 
 
@@ -107,9 +103,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public String creatfile(String filename)
+    public String creatFile(String filename)
     {
-        //File file = new File(Environment.getExternalStorageDirectory() ,  filename);
         File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),  filename);
         file.mkdirs();
         try{
@@ -126,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
             if(file.exists()){
                 System.out.println("檔案已存在");
                 System.out.println("path : " + file.getAbsolutePath());
-                //dialog("系統訊息", "建立失敗，檔案已存在" + file.getAbsolutePath());
             }
             else{
                 System.out.println("檔案不存在");
@@ -148,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
 
                     }
-                })//.setNegativeButton("cancel",null)
+                })
                 .create()
                 .show();
 
@@ -167,7 +161,6 @@ public class MainActivity extends AppCompatActivity {
                 dialog("ERROR MESSAGE","please choose 'white' or 'target' first!");
             }
             else{
-                //openUsbDevice();
                 openGallery();
             }
         }
@@ -184,9 +177,7 @@ public class MainActivity extends AppCompatActivity {
         intent.setType("image/**");
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
 
-        //intent.setAction(Intent.ACTION_GET_CONTENT);
         intent.setAction(Intent.ACTION_PICK);
-        //startActivityForResult(Intent.createChooser(intent,"Select Picture"), PICK_IMAGE);
         startActivityForResult(intent, PICK_IMAGE);
 
 
@@ -214,18 +205,18 @@ public class MainActivity extends AppCompatActivity {
                         } catch (FileNotFoundException e) {
                             e.printStackTrace();
                         }
-                        imagepath = getPath(imageUri);              //轉換為絕對路徑
-                        UUri.add(imagepath);                    //增添到LIST裡面
-                        String [] asdsa = UUri.get(i).split("/");
-                        String imagename = asdsa[asdsa.length-1];
-                        System.out.println(imagename);
+                        imagePath = getPath(imageUri);              //轉換為絕對路徑
+                        UUri.add(imagePath);                    //增添到LIST裡面
+                        String [] split = UUri.get(i).split("/");
+                        String imageName = split[split.length-1];
+                        System.out.println(imageName);
                         if(tt.getText().toString().equals(""))
                         {
-                            tt.setText("已選擇:  " + imagename);
+                            tt.setText("已選擇:  " + imageName);
                         }
                         else
                         {
-                            tt.setText(tt.getText() + "\n" + imagename);
+                            tt.setText(tt.getText() + "\n" + imageName);
                         }
 
                     }
