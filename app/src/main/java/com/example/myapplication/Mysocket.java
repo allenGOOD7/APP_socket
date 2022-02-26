@@ -21,16 +21,11 @@ import java.util.ArrayList;
 
 
 
-public class Mysocket extends AsyncTask<ArrayList<String>, Integer, Void>     // AsyncTask : 在背景動作
+public class Mysocket extends AsyncTask<ArrayList<String>, Integer, Void>
 {
-
-    Socket s;
-    DataOutputStream dos;
-    PrintWriter pw;
-    TextView rr;
     String re = "? ";
     ProgressDialog progressDialog;
-    String processfilename;
+    String processFileName;
     int value = 0;
 
     Context context;
@@ -48,7 +43,7 @@ public class Mysocket extends AsyncTask<ArrayList<String>, Integer, Void>     //
         progressDialog = new ProgressDialog(context);
         progressDialog.setMax(100);
         progressDialog.setTitle("正在上傳&計算");
-        progressDialog.setMessage(processfilename);
+        progressDialog.setMessage(processFileName);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         progressDialog.setCancelable(false);
         progressDialog.show();
@@ -61,8 +56,6 @@ public class Mysocket extends AsyncTask<ArrayList<String>, Integer, Void>     //
 
         String message;
         ArrayList<String> totallist = voids[0];
-        int length;
-        byte[] sendBytes;
         FileInputStream fis = null;
 
         for (int i = 0; i < totallist.size(); i++)
@@ -85,8 +78,8 @@ public class Mysocket extends AsyncTask<ArrayList<String>, Integer, Void>     //
                 System.out.println(file.getName());
                 System.out.println(file);
 
-                processfilename = file.getName();
-                System.out.println("processfilename : " + processfilename);
+                processFileName = file.getName();
+                System.out.println("processFileName : " + processFileName);
 
                 // 用來判斷是白校正片還是物品照片，使用ttemp當判斷準則
                 String [] temp = file.getParent().split("/");
@@ -102,7 +95,6 @@ public class Mysocket extends AsyncTask<ArrayList<String>, Integer, Void>     //
                 if (ttemp.equals("white"))
                 {
                     out.write(("w" + FileName + "#").getBytes());
-                    //System.out.println("TTTEMP");
                 }
                 if (ttemp.equals("target"))
                 {
@@ -136,11 +128,6 @@ public class Mysocket extends AsyncTask<ArrayList<String>, Integer, Void>     //
                 //創建target檔案之資料夾
                 File del = new File(MainActivity.target_path);
                 File[] files = del.listFiles();
-                /*for (int i = 0; i < files.length; i++) {
-                    //String name = files[i].getName();
-                    System.out.println("刪除 file :" + files[i].getName());
-                }*/
-
 
                 while (in != null)
                 {
@@ -148,10 +135,6 @@ public class Mysocket extends AsyncTask<ArrayList<String>, Integer, Void>     //
 
                     byte[] bufIn = new byte[1024];
                     int num = in.read(bufIn);
-
-                    //System.out.println(new String(bufIn,0,num));
-
-                    //String re = new String(bufIn,0,num);
                     re = new String(bufIn,0,num);
 
                     //刪除target資料夾內之資料
@@ -185,7 +168,7 @@ public class Mysocket extends AsyncTask<ArrayList<String>, Integer, Void>     //
     protected void onProgressUpdate(Integer... values)
     {
 
-        progressDialog.setMessage(processfilename);
+        progressDialog.setMessage(processFileName);
         super.onProgressUpdate(values);
         progressDialog.setProgress(values[0]);
 
