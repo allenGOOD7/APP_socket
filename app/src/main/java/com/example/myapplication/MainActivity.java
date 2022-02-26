@@ -39,8 +39,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity {               // extends: 繼承父類別(AppCompatActivity)的參數
-    //private static final Object ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION = 0;
+public class MainActivity extends AppCompatActivity {               
     public static Dialog progressDialog;
 
     TextView tt;
@@ -68,16 +67,7 @@ public class MainActivity extends AppCompatActivity {               // extends: 
         view = this.getWindow().getDecorView();
         view.setBackgroundResource(R.color.black);
 
-        //el = (EditText)findViewById(R.id.input_Text);     // 連結介面上的物件  input_Text為介面上物件的名稱
-        //tt = (TextView)findViewById(R.id.textView);
-        //rr = (TextView)findViewById(R.id.textView2);
         res = (TextView)findViewById(R.id.textView3);
-        //imageview = (ImageView)findViewById((R.id.imageView));
-
-        // Button 初始化的步驟
-        //button = (Button)findViewById(R.id.buttonLoadPicture);
-        //button.setOnClickListener(buttonLoadPicture);
-
         rg = (RadioGroup)findViewById(R.id.radioGroup);
 
 
@@ -116,7 +106,7 @@ public class MainActivity extends AppCompatActivity {               // extends: 
         }
     }
 
-    // 創建資料夾
+
     public String creatfile(String filename)
     {
         //File file = new File(Environment.getExternalStorageDirectory() ,  filename);
@@ -143,7 +133,6 @@ public class MainActivity extends AppCompatActivity {               // extends: 
                 dialog("系統訊息", "檔案不存在，請開啟裝置儲存權限");
             }
         }
-        //dialog("路徑", file.getAbsolutePath());
         return file.getAbsolutePath();
     }
 
@@ -188,11 +177,6 @@ public class MainActivity extends AppCompatActivity {               // extends: 
     // 開啟手機相簿
     public void openGallery()              //  開啟手機相簿
     {
-        /*Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-        gallery.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-        startActivityForResult(gallery, PICK_IMAGE);  */          //開啟第二個畫面
-        //Intent intent = new Intent(Intent.ACTION_PICK);
-
         UUri.clear();
 
         Intent intent = new Intent();
@@ -212,7 +196,7 @@ public class MainActivity extends AppCompatActivity {               // extends: 
             super.onActivityResult(requestCode, resultCode, data);
 
 
-            if (resultCode == RESULT_OK && requestCode == PICK_IMAGE)       //為了確保沒有選擇照片時按了上一頁的按鍵，手機不會閃退
+            if (resultCode == RESULT_OK && requestCode == PICK_IMAGE)      
             {
                 List<Bitmap> bitmaps = new ArrayList<>();
                 ClipData clipData = data.getClipData();
@@ -232,7 +216,6 @@ public class MainActivity extends AppCompatActivity {               // extends: 
                         }
                         imagepath = getPath(imageUri);              //轉換為絕對路徑
                         UUri.add(imagepath);                    //增添到LIST裡面
-                        //tt.setText(imagepath);
                         String [] asdsa = UUri.get(i).split("/");
                         String imagename = asdsa[asdsa.length-1];
                         System.out.println(imagename);
@@ -282,7 +265,6 @@ public class MainActivity extends AppCompatActivity {               // extends: 
     public void send(View v) {
 
         choose();
-        //openGallery();
         if (target_label.equals("unselected"))
         {
             dialog("系統訊息", "請先選擇測試資料");
@@ -329,8 +311,6 @@ public class MainActivity extends AppCompatActivity {               // extends: 
             }
             else{
                 dialog("系統提示", "輸入資料不對\n\n請檢查'white'與'target'資料夾");
-                //dialog("白色數量", String.valueOf(white.listFiles().length));
-                //dialog("目標數量", String.valueOf(target.listFiles().length));
             }
         }
     }
